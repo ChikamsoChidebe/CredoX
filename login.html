@@ -1,0 +1,145 @@
+<html lang="en"><head>
+        
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="csrf-token" content="nWQAURi8TTrcIAQtFOMBncJf2TE8MfBSlVD6ueHB">
+        <title>Winbull Trade | User Login</title>
+        
+        
+        <link rel="icon" href="https://winbulltrade.online/storage/app/public/photos/vMKzuRwm65feYGZBdl9gaYTUlB8kdHppUk2TZD5l.png" type="image/png">
+                   
+            <link href="https://winbulltrade.online/temp/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+            <!-- Icons -->
+            <link href="https://winbulltrade.online/temp/css/materialdesignicons.min.css" rel="stylesheet" type="text/css">
+        
+            <link rel="stylesheet" href="https://winbulltrade.online/temp/css/line.css">
+            <script type="text/javascript" async="" charset="utf-8" src="https://www.gstatic.com/recaptcha/releases/jt8Oh2-Ue1u7nEbJQUIdocyd/recaptcha__en.js" crossorigin="anonymous" integrity="sha384-UPrQVGoaAH4LSrUOE7fPg+sY6k0d8riR1MCeHMs2PytQcLpLR6pkOj7gsJu5KWvT"></script><script src="https://www.google.com/recaptcha/api.js" async="" defer=""></script>
+            <!-- Main Css -->
+             <link rel="stylesheet" href="winbull.css">
+             <link rel="stylesheet" href="default.css">        
+    <style>
+        @font-face {
+            font-family: 'NotoSans_online_security'; 
+            src: url(chrome-extension://jcpgbnbdnakoblgfkbgggankeidkfcdl/assets/fonts/noto-sans-regular.woff);
+        }
+
+        @font-face {
+            font-family: 'NotoSans_medium_online_security'; 
+            src: url(chrome-extension://jcpgbnbdnakoblgfkbgggankeidkfcdl/assets/fonts/noto-sans-medium.ttf);
+        }
+
+        @font-face {
+            font-family: 'NotoSans_bold_online_security'; 
+            src: url(chrome-extension://jcpgbnbdnakoblgfkbgggankeidkfcdl/assets/fonts/noto-sans-bold.woff);
+        }
+
+        @font-face {
+            font-family: 'NotoSans_semibold_online_security'; 
+            src: url(chrome-extension://jcpgbnbdnakoblgfkbgggankeidkfcdl/assets/fonts/noto-sans-semibold.ttf);
+        }
+</style></head>
+    <body class="h-100 bg-soft-primary" style="overflow: visible;">
+       <section class=" auth">
+        <div class="container">
+            <div class="pb-3 row justify-content-center">
+<!-- 
+                <div class="col-12 col-md-6 col-lg-6 col-sm-10 col-xl-6">
+                    <div class="text-center">
+                       <a href="/"><img src="https://winbulltrade.online/storage/app/public/photos/iuw0oOJ5Aby4flIRBmsIDVnK0OTrYIViq990kMQq.png" alt="" class="mb-3 img-fluid auth__logo"></a> 
+                    </div> -->
+                    
+                                                                        <div class="bg-white shadow card login-page roundedd border-1 ">
+                        <div class="card-body">
+                            <h4 class="text-center card-title">User Login</h4>
+                            <form method="POST" action="https://winbulltrade.online/login" class="mt-4 login-form">
+                                 <input type="hidden" name="_token" value="nWQAURi8TTrcIAQtFOMBncJf2TE8MfBSlVD6ueHB">                                <div class="row">
+                                    <div class="col-lg-12">
+                                        <div class="form-group">
+                                            <label>Your Email <span class="text-danger">*</span></label>
+                                            <div class="position-relative">
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-mail fea icon-sm icons"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+                                                <input type="email" class="pl-5 form-control" name="email" value="" id="email" placeholder="name@example.com" required="">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!--end col-->
+
+                                    <div class="col-lg-12">
+                                        <div class="form-group">
+                                            <label>Password <span class="text-danger">*</span></label>
+                                            <div class="position-relative">
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-key fea icon-sm icons"><path d="M21 2l-2 2m-7.61 7.61a5.5 5.5 0 1 1-7.778 7.778 5.5 5.5 0 0 1 7.777-7.777zm0 0L15.5 7.5m0 0l3 3L22 7l-3-3m-3.5 3.5L19 4"></path></svg>
+                                                <input type="password" class="pl-5 form-control" name="password" id="password" placeholder="Enter Password" required="">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!--end col-->
+
+                                    <div class="col-lg-12">
+                                        <div class="d-flex justify-content-between">
+                                            <div class="form-group">
+                                                <div class="custom-control custom-checkbox">
+                                                    <input type="checkbox" class="custom-control-input" id="customCheck1" name="remember">
+                                                    <label class="custom-control-label" for="customCheck1">Remember
+                                                        me</label>
+                                                </div>
+                                            </div>
+                                            <p class="mb-0 forgot-pass"><a href="https://winbulltrade.online/forgot-password" class="text-dark font-weight-bold">Forgot password ?</a></p>
+                                        </div>
+                                    </div>
+                                    <!--end col-->
+
+                                    <div class="mb-0 col-lg-12">
+                                        <button class="btn btn-primary btn-block pad" type="submit"> <a href="dashboard.html">Sign in</a> </button>
+                                    </div>
+                                    <!--end col-->
+
+                                    <div class="mt-4 text-center col-lg-12">
+                                                                            </div>
+                                    <!--end col-->
+                                    <!--end col-->
+
+                                    <div class="text-center col-12">
+                                        <p class="mt-3 mb-0"><small class="mr-2 text-dark">Don't have an account
+                                                ?</small> <a href="register.html" class="text-dark font-weight-bold">Sign Up</a></p>
+                                    </div>
+                                    <!--end col-->
+                                    
+                                    <div class="text-center col-12">
+                                        <p class="mt-4 mb-0"><small class="mr-2 text-dark">© Copyright  2025 &nbsp; Winbull Trade &nbsp; All Rights Reserved.</small>
+                                        </p>
+                                    </div>
+                                </div>
+                                <!--end row-->
+                            </form>
+                        </div>
+                    </div>
+                    <!---->
+                </div>
+                <!--end col-->
+            </div>
+            <!--end row-->
+        </div>
+        <!--end container-->
+    </section>
+    <!--end section-->
+
+
+
+
+                 <script src="https://winbulltrade.online/temp/js/jquery-3.5.1.min.js"></script>
+            <script src="https://winbulltrade.online/temp/js/bootstrap.bundle.min.js"></script>
+            
+            <!-- SLIDER -->
+            <script src="https://winbulltrade.online/temp/js/owl.carousel.min.js"></script>
+            <script src="https://winbulltrade.online/temp/js/owl.init.js"></script>
+            <!-- Icons -->
+            <script src="https://winbulltrade.online/temp/js/feather.min.js"></script>
+            <script src="https://winbulltrade.online/temp/js/bundle.js"></script>
+            
+            <script src="https://winbulltrade.online/temp/js/app.js"></script>
+            <script src="https://winbulltrade.online/temp/js/widget.js"></script>
+       
+    
+
+</body></html>

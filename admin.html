@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Admin Dashboard Feature Editor</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 2rem;
+            background-color: #f5f5f5;
+        }
+        h1 {
+            color: #333;
+        }
+        form {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 8px;
+            max-width: 400px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+        label {
+            display: block;
+            margin-top: 1rem;
+            font-weight: bold;
+            color: #555;
+        }
+        input[type="number"] {
+            width: 100%;
+            padding: 0.5rem;
+            margin-top: 0.3rem;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-size: 1rem;
+        }
+        button {
+            margin-top: 1.5rem;
+            padding: 0.7rem 1.2rem;
+            font-size: 1rem;
+            background-color: #007bff;
+            border: none;
+            border-radius: 4px;
+            color: white;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        .result {
+            margin-top: 2rem;
+            background: white;
+            padding: 1rem;
+            border-radius: 8px;
+            max-width: 400px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            color: #333;
+        }
+        .result h2 {
+            margin-top: 0;
+        }
+        .result p {
+            margin: 0.3rem 0;
+        }
+    </style>
+</head>
+<body>
+    <h1>Admin Dashboard Feature Editor</h1>
+    <form id="featureForm">
+        <label for="accountBalance">Account Balance ($)</label>
+        <input type="number" id="accountBalance" name="accountBalance" step="0.01" min="0" required />
+
+        <label for="totalProfit">Total Profit ($)</label>
+        <input type="number" id="totalProfit" name="totalProfit" step="0.01" min="0" required />
+
+        <label for="bonus">Bonus ($)</label>
+        <input type="number" id="bonus" name="bonus" step="0.01" min="0" required />
+
+        <label for="referralBonus">Referral Bonus ($)</label>
+        <input type="number" id="referralBonus" name="referralBonus" step="0.01" min="0" required />
+
+        <label for="totalDeposit">Total Deposit ($)</label>
+        <input type="number" id="totalDeposit" name="totalDeposit" step="0.01" min="0" required />
+
+        <label for="totalWithdrawal">Total Withdrawal ($)</label>
+        <input type="number" id="totalWithdrawal" name="totalWithdrawal" step="0.01" min="0" required />
+
+        <label for="activePlansCount">Active Plans Count</label>
+        <input type="number" id="activePlansCount" name="activePlansCount" min="0" required />
+
+        <label for="activePlansMessage">Active Plans Message</label>
+        <input type="text" id="activePlansMessage" name="activePlansMessage" required />
+
+        <label for="recentTransactionsCount">Recent Transactions Count</label>
+        <input type="number" id="recentTransactionsCount" name="recentTransactionsCount" min="0" required />
+
+        <label for="recentTransactionsMessage">Recent Transactions Message</label>
+        <input type="text" id="recentTransactionsMessage" name="recentTransactionsMessage" required />
+
+        <label for="referralLink">Referral Link URL</label>
+        <input type="url" id="referralLink" name="referralLink" required />
+
+        <button type="submit">Save Changes</button>
+    </form>
+
+    <div class="result" id="result" style="display:none;">
+        <h2>Updated Dashboard Features</h2>
+        <p><strong>Account Balance:</strong> $<span id="resAccountBalance"></span></p>
+        <p><strong>Total Profit:</strong> $<span id="resTotalProfit"></span></p>
+        <p><strong>Bonus:</strong> $<span id="resBonus"></span></p>
+        <p><strong>Referral Bonus:</strong> $<span id="resReferralBonus"></span></p>
+        <p><strong>Total Deposit:</strong> $<span id="resTotalDeposit"></span></p>
+        <p><strong>Total Withdrawal:</strong> $<span id="resTotalWithdrawal"></span></p>
+        <p><strong>Active Plans Count:</strong> <span id="resActivePlansCount"></span></p>
+        <p><strong>Active Plans Message:</strong> <span id="resActivePlansMessage"></span></p>
+        <p><strong>Recent Transactions Count:</strong> <span id="resRecentTransactionsCount"></span></p>
+        <p><strong>Recent Transactions Message:</strong> <span id="resRecentTransactionsMessage"></span></p>
+        <p><strong>Referral Link URL:</strong> <span id="resReferralLink"></span></p>
+    </div>
+
+    <script>
+        const form = document.getElementById('featureForm');
+        const resultDiv = document.getElementById('result');
+
+        // Load saved values from localStorage on page load
+        window.addEventListener('DOMContentLoaded', () => {
+            if(localStorage.getItem('dashboardFeatures')) {
+                const saved = JSON.parse(localStorage.getItem('dashboardFeatures'));
+                form.accountBalance.value = saved.accountBalance || '';
+                form.totalProfit.value = saved.totalProfit || '';
+                form.bonus.value = saved.bonus || '';
+                form.referralBonus.value = saved.referralBonus || '';
+                form.totalDeposit.value = saved.totalDeposit || '';
+                form.totalWithdrawal.value = saved.totalWithdrawal || '';
+                form.activePlansCount.value = saved.activePlansCount || '';
+                form.activePlansMessage.value = saved.activePlansMessage || '';
+                form.recentTransactionsCount.value = saved.recentTransactionsCount || '';
+                form.recentTransactionsMessage.value = saved.recentTransactionsMessage || '';
+                form.referralLink.value = saved.referralLink || '';
+            }
+        });
+
+        form.addEventListener('submit', function(event) {
+            event.preventDefault();
+
+            const accountBalance = parseFloat(form.accountBalance.value).toFixed(2);
+            const totalProfit = parseFloat(form.totalProfit.value).toFixed(2);
+            const bonus = parseFloat(form.bonus.value).toFixed(2);
+            const referralBonus = parseFloat(form.referralBonus.value).toFixed(2);
+            const totalDeposit = parseFloat(form.totalDeposit.value).toFixed(2);
+            const totalWithdrawal = parseFloat(form.totalWithdrawal.value).toFixed(2);
+            const activePlansCount = parseInt(form.activePlansCount.value);
+            const activePlansMessage = form.activePlansMessage.value.trim();
+            const recentTransactionsCount = parseInt(form.recentTransactionsCount.value);
+            const recentTransactionsMessage = form.recentTransactionsMessage.value.trim();
+            const referralLink = form.referralLink.value.trim();
+
+            // Save to localStorage
+            const dashboardFeatures = {
+                accountBalance,
+                totalProfit,
+                bonus,
+                referralBonus,
+                totalDeposit,
+                totalWithdrawal,
+                activePlansCount,
+                activePlansMessage,
+                recentTransactionsCount,
+                recentTransactionsMessage,
+                referralLink
+            };
+            localStorage.setItem('dashboardFeatures', JSON.stringify(dashboardFeatures));
+
+            // Update result display
+            document.getElementById('resAccountBalance').textContent = accountBalance;
+            document.getElementById('resTotalProfit').textContent = totalProfit;
+            document.getElementById('resBonus').textContent = bonus;
+            document.getElementById('resReferralBonus').textContent = referralBonus;
+            document.getElementById('resTotalDeposit').textContent = totalDeposit;
+            document.getElementById('resTotalWithdrawal').textContent = totalWithdrawal;
+            document.getElementById('resActivePlansCount').textContent = activePlansCount;
+            document.getElementById('resActivePlansMessage').textContent = activePlansMessage;
+            document.getElementById('resRecentTransactionsCount').textContent = recentTransactionsCount;
+            document.getElementById('resRecentTransactionsMessage').textContent = recentTransactionsMessage;
+            document.getElementById('resReferralLink').textContent = referralLink;
+
+            resultDiv.style.display = 'block';
+        });
+    </script>
+</body>
+</html>
