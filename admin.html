@@ -3,22 +3,54 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Admin Dashboard Feature Editor</title>
+    <title>Admin Dashboard User Management</title>
+    <link rel="stylesheet" href="admin_responsive.css">
     <style>
         body {
             font-family: Arial, sans-serif;
             margin: 2rem;
             background-color: #f5f5f5;
+            display: flex;
+            gap: 2rem;
         }
         h1 {
             color: #333;
+            margin-bottom: 1rem;
+        }
+        #userList {
+            background: white;
+            padding: 1rem;
+            border-radius: 8px;
+            max-width: 300px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            height: fit-content;
+        }
+        #userList h2 {
+            margin-top: 0;
+        }
+        #userList ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            max-height: 400px;
+            overflow-y: auto;
+        }
+        #userList li {
+            padding: 0.5rem;
+            border-bottom: 1px solid #ddd;
+            cursor: pointer;
+        }
+        #userList li:hover, #userList li.selected {
+            background-color: #007bff;
+            color: white;
         }
         form {
             background: white;
             padding: 1.5rem;
             border-radius: 8px;
-            max-width: 400px;
+            max-width: 500px;
             box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            flex-grow: 1;
         }
         label {
             display: block;
@@ -26,7 +58,9 @@
             font-weight: bold;
             color: #555;
         }
-        input[type="number"] {
+        input[type="number"],
+        input[type="text"],
+        input[type="url"] {
             width: 100%;
             padding: 0.5rem;
             margin-top: 0.3rem;
@@ -52,7 +86,7 @@
             background: white;
             padding: 1rem;
             border-radius: 8px;
-            max-width: 400px;
+            max-width: 500px;
             box-shadow: 0 0 10px rgba(0,0,0,0.1);
             color: #333;
         }
@@ -65,8 +99,20 @@
     </style>
 </head>
 <body>
+    <div id="userList">
+        <h2>Registered Users</h2>
+        <ul id="usersUl">
+            <!-- User list items will be populated here -->
+        </ul>
+        <button id="addUserBtn">Add New User</button>
+    </div>
+
+   <div>
     <h1>Admin Dashboard Feature Editor</h1>
     <form id="featureForm">
+        <label for="username">Username</label>
+        <input type="text" id="username" name="username" readonly />
+
         <label for="accountBalance">Account Balance ($)</label>
         <input type="number" id="accountBalance" name="accountBalance" step="0.01" min="0" required />
 
@@ -104,7 +150,7 @@
     </form>
 
     <div class="result" id="result" style="display:none;">
-        <h2>Updated Dashboard Features</h2>
+        <h2>Updated Dashboard Features for <span id="resUsername"></span></h2>
         <p><strong>Account Balance:</strong> $<span id="resAccountBalance"></span></p>
         <p><strong>Total Profit:</strong> $<span id="resTotalProfit"></span></p>
         <p><strong>Bonus:</strong> $<span id="resBonus"></span></p>
@@ -117,75 +163,173 @@
         <p><strong>Recent Transactions Message:</strong> <span id="resRecentTransactionsMessage"></span></p>
         <p><strong>Referral Link URL:</strong> <span id="resReferralLink"></span></p>
     </div>
+</div>
 
-    <script>
-        const form = document.getElementById('featureForm');
-        const resultDiv = document.getElementById('result');
+<script>
+    const usersKey = 'registeredUsers';
+    const featureKeyPrefix = 'dashboardFeatures_';
 
-        // Load saved values from localStorage on page load
-        window.addEventListener('DOMContentLoaded', () => {
-            if(localStorage.getItem('dashboardFeatures')) {
-                const saved = JSON.parse(localStorage.getItem('dashboardFeatures'));
-                form.accountBalance.value = saved.accountBalance || '';
-                form.totalProfit.value = saved.totalProfit || '';
-                form.bonus.value = saved.bonus || '';
-                form.referralBonus.value = saved.referralBonus || '';
-                form.totalDeposit.value = saved.totalDeposit || '';
-                form.totalWithdrawal.value = saved.totalWithdrawal || '';
-                form.activePlansCount.value = saved.activePlansCount || '';
-                form.activePlansMessage.value = saved.activePlansMessage || '';
-                form.recentTransactionsCount.value = saved.recentTransactionsCount || '';
-                form.recentTransactionsMessage.value = saved.recentTransactionsMessage || '';
-                form.referralLink.value = saved.referralLink || '';
-            }
-        });
+    const usersUl = document.getElementById('usersUl');
+    const featureForm = document.getElementById('featureForm');
+    const resultDiv = document.getElementById('result');
 
-        form.addEventListener('submit', function(event) {
-            event.preventDefault();
+    let users = [];
+    let selectedUser = null;
 
-            const accountBalance = parseFloat(form.accountBalance.value).toFixed(2);
-            const totalProfit = parseFloat(form.totalProfit.value).toFixed(2);
-            const bonus = parseFloat(form.bonus.value).toFixed(2);
-            const referralBonus = parseFloat(form.referralBonus.value).toFixed(2);
-            const totalDeposit = parseFloat(form.totalDeposit.value).toFixed(2);
-            const totalWithdrawal = parseFloat(form.totalWithdrawal.value).toFixed(2);
-            const activePlansCount = parseInt(form.activePlansCount.value);
-            const activePlansMessage = form.activePlansMessage.value.trim();
-            const recentTransactionsCount = parseInt(form.recentTransactionsCount.value);
-            const recentTransactionsMessage = form.recentTransactionsMessage.value.trim();
-            const referralLink = form.referralLink.value.trim();
+    // Load users from localStorage or initialize with sample users
+    function loadUsers() {
+        const storedUsers = localStorage.getItem(usersKey);
+        if (storedUsers) {
+            users = JSON.parse(storedUsers);
+        } else {
+            // Sample users
+            users = [
+                { username: 'Davidezeagu' },
+                { username: 'Chikamso' },
+                { username: 'Ayo' }
+            ];
+            localStorage.setItem(usersKey, JSON.stringify(users));
+        }
+    }
 
-            // Save to localStorage
-            const dashboardFeatures = {
-                accountBalance,
-                totalProfit,
-                bonus,
-                referralBonus,
-                totalDeposit,
-                totalWithdrawal,
-                activePlansCount,
-                activePlansMessage,
-                recentTransactionsCount,
-                recentTransactionsMessage,
-                referralLink
-            };
-            localStorage.setItem('dashboardFeatures', JSON.stringify(dashboardFeatures));
+    // Save users list to localStorage
+    function saveUsers() {
+        localStorage.setItem(usersKey, JSON.stringify(users));
+    }
 
-            // Update result display
-            document.getElementById('resAccountBalance').textContent = accountBalance;
-            document.getElementById('resTotalProfit').textContent = totalProfit;
-            document.getElementById('resBonus').textContent = bonus;
-            document.getElementById('resReferralBonus').textContent = referralBonus;
-            document.getElementById('resTotalDeposit').textContent = totalDeposit;
-            document.getElementById('resTotalWithdrawal').textContent = totalWithdrawal;
-            document.getElementById('resActivePlansCount').textContent = activePlansCount;
-            document.getElementById('resActivePlansMessage').textContent = activePlansMessage;
-            document.getElementById('resRecentTransactionsCount').textContent = recentTransactionsCount;
-            document.getElementById('resRecentTransactionsMessage').textContent = recentTransactionsMessage;
-            document.getElementById('resReferralLink').textContent = referralLink;
+        // Render user list
+        function renderUserList() {
+            usersUl.innerHTML = '';
+            users.forEach(user => {
+                const li = document.createElement('li');
+                // Display username and full name if available
+                const displayName = user.name ? `${user.username} (${user.name})` : user.username;
+                li.textContent = displayName;
+                li.dataset.username = user.username;
+                if (selectedUser && selectedUser.username === user.username) {
+                    li.classList.add('selected');
+                }
+                li.addEventListener('click', () => {
+                    selectUser(user.username);
+                });
+                usersUl.appendChild(li);
+            });
+        }
 
-            resultDiv.style.display = 'block';
-        });
-    </script>
+    // Load dashboard features for a user
+    function loadFeatures(username) {
+        const featuresStr = localStorage.getItem(featureKeyPrefix + username);
+        if (featuresStr) {
+            return JSON.parse(featuresStr);
+        }
+        // Return default empty features if none saved
+        return {
+            accountBalance: '',
+            totalProfit: '',
+            bonus: '',
+            referralBonus: '',
+            totalDeposit: '',
+            totalWithdrawal: '',
+            activePlansCount: '',
+            activePlansMessage: '',
+            recentTransactionsCount: '',
+            recentTransactionsMessage: '',
+            referralLink: ''
+        };
+    }
+
+    // Save dashboard features for a user
+    function saveFeatures(username, features) {
+        localStorage.setItem(featureKeyPrefix + username, JSON.stringify(features));
+    }
+
+    // Select a user and load their features into the form
+    function selectUser(username) {
+        selectedUser = users.find(u => u.username === username);
+        if (!selectedUser) return;
+
+        // Highlight selected user in list
+        renderUserList();
+
+        // Load features
+        const features = loadFeatures(username);
+
+        // Populate form
+        featureForm.username.value = username;
+        featureForm.accountBalance.value = features.accountBalance;
+        featureForm.totalProfit.value = features.totalProfit;
+        featureForm.bonus.value = features.bonus;
+        featureForm.referralBonus.value = features.referralBonus;
+        featureForm.totalDeposit.value = features.totalDeposit;
+        featureForm.totalWithdrawal.value = features.totalWithdrawal;
+        featureForm.activePlansCount.value = features.activePlansCount;
+        featureForm.activePlansMessage.value = features.activePlansMessage;
+        featureForm.recentTransactionsCount.value = features.recentTransactionsCount;
+        featureForm.recentTransactionsMessage.value = features.recentTransactionsMessage;
+        featureForm.referralLink.value = features.referralLink;
+
+        resultDiv.style.display = 'none';
+    }
+
+    // Add new user
+    function addUser() {
+        const newUsername = prompt('Enter new username:');
+        if (!newUsername) return alert('Username cannot be empty.');
+        if (users.find(u => u.username === newUsername)) return alert('Username already exists.');
+
+        users.push({ username: newUsername });
+        saveUsers();
+        renderUserList();
+        selectUser(newUsername);
+    }
+
+    // Handle form submission to save changes
+    featureForm.addEventListener('submit', function(event) {
+        event.preventDefault();
+        if (!selectedUser) return alert('No user selected.');
+
+        const features = {
+            accountBalance: parseFloat(featureForm.accountBalance.value).toFixed(2),
+            totalProfit: parseFloat(featureForm.totalProfit.value).toFixed(2),
+            bonus: parseFloat(featureForm.bonus.value).toFixed(2),
+            referralBonus: parseFloat(featureForm.referralBonus.value).toFixed(2),
+            totalDeposit: parseFloat(featureForm.totalDeposit.value).toFixed(2),
+            totalWithdrawal: parseFloat(featureForm.totalWithdrawal.value).toFixed(2),
+            activePlansCount: parseInt(featureForm.activePlansCount.value),
+            activePlansMessage: featureForm.activePlansMessage.value.trim(),
+            recentTransactionsCount: parseInt(featureForm.recentTransactionsCount.value),
+            recentTransactionsMessage: featureForm.recentTransactionsMessage.value.trim(),
+            referralLink: featureForm.referralLink.value.trim()
+        };
+
+        saveFeatures(selectedUser.username, features);
+
+        // Update result display
+        document.getElementById('resUsername').textContent = selectedUser.username;
+        document.getElementById('resAccountBalance').textContent = features.accountBalance;
+        document.getElementById('resTotalProfit').textContent = features.totalProfit;
+        document.getElementById('resBonus').textContent = features.bonus;
+        document.getElementById('resReferralBonus').textContent = features.referralBonus;
+        document.getElementById('resTotalDeposit').textContent = features.totalDeposit;
+        document.getElementById('resTotalWithdrawal').textContent = features.totalWithdrawal;
+        document.getElementById('resActivePlansCount').textContent = features.activePlansCount;
+        document.getElementById('resActivePlansMessage').textContent = features.activePlansMessage;
+        document.getElementById('resRecentTransactionsCount').textContent = features.recentTransactionsCount;
+        document.getElementById('resRecentTransactionsMessage').textContent = features.recentTransactionsMessage;
+        document.getElementById('resReferralLink').textContent = features.referralLink;
+
+        resultDiv.style.display = 'block';
+    });
+
+    document.getElementById('addUserBtn').addEventListener('click', addUser);
+
+    // Initialize
+    loadUsers();
+    renderUserList();
+    if (users.length > 0) {
+        selectUser(users[0].username);
+    }
+</script>
+
 </body>
 </html>
