@@ -689,7 +689,7 @@
                 <i class="fas fa-user-circle fa-4x"></i>
             </a>
             <div class="mt-4">
-                <h5 class="mb-0 text-white"> hey</h5>
+                <h5 class="mb-0 text-white names">hey </h5>
                 <span class="mb-3 text-sm text-white d-block opacity-8">online</span>
                 <a href="#" class="shadow btn btn-sm btn-white btn-icon rounded-pill hover-translate-y-n3">
                     <span class="btn-inner--icon"><i class="far fa-coins"></i></span>
@@ -812,7 +812,7 @@
                         </span>
                     </a>
                     <div class="dropdown-menu dropdown-menu-sm dropdown-menu-right dropdown-menu-arrow">
-                        <h6 class="px-0 dropdown-header">Hi, hey!</h6>
+                        <h6 class="px-0 dropdown-header names">Hi, hey!</h6>
                         <a href="https://winbulltrade.online/dashboard/account-settings" class="dropdown-item">
                             <i class="far fa-user"></i>
                             <span>My profile</span>
@@ -865,12 +865,12 @@
                                 <i class="fas fa-user-circle fa-2x"></i>
                             </span>
                             <div class="ml-2 d-none d-lg-block">
-                                <span class="mb-0 text-sm font-weight-bold">hey</span>
+                                <span id="navbarUserName" class="mb-0 text-sm font-weight-bold">hey</span>
                             </div>
                         </div>
                     </a>
                     <div class="dropdown-menu dropdown-menu-sm dropdown-menu-right dropdown-menu-arrow">
-                        <h6 class="px-0 dropdown-header">Hi, hey!</h6>
+                        <h6 id="dropdownUserGreeting" class="px-0 dropdown-header">Hi, hey!</h6>
                         <a href="https://winbulltrade.online/dashboard/account-settings" class="dropdown-item">
                             <i class="far fa-user"></i>
                             <span>My profile</span>
@@ -899,7 +899,7 @@
     <div class="page-title">
         <div class="row justify-content-between align-items-center">
             <div class="mb-3 col-md-6 mb-md-0">
-                <h5 class="mb-0 text-white h3 font-weight-400">Welcome, hey!</h5>
+                <h5 id="welcomeUser" class="mb-0 text-white h3 font-weight-400 names"><p id="names">Welcome, hey!</p> </h5>
             </div>
         </div>
     </div>
@@ -1219,36 +1219,58 @@
 
 
 <script>
-    // On DOMContentLoaded, update user name display on dashboard
+    // On DOMContentLoaded, update user name display on dashboard with improved username extraction and matching
     document.addEventListener('DOMContentLoaded', () => {
-        // Get logged-in username from localStorage or sessionStorage
-        // Assuming username is stored in localStorage under 'loggedInUsername'
-        const loggedInUsername = localStorage.getItem('loggedInUsername');
-        if (!loggedInUsername) return;
-
-        // Get registered users from localStorage
-        const usersStr = localStorage.getItem('registeredUsers');
-        if (!usersStr) return;
-
-        const users = JSON.parse(usersStr);
-        const currentUser = users.find(u => u.username === loggedInUsername);
-        if (!currentUser) return;
-
-        const fullName = currentUser.name || loggedInUsername;
-
-        // Update welcome message
-        const welcomeElements = document.querySelectorAll('h5.mb-0.text-white.h3.font-weight-400, .dropdown-header, .ml-2.d-none.d-lg-block span');
-        welcomeElements.forEach(el => {
-            if (el.textContent.trim() === 'hey') {
-                el.textContent = fullName;
+        try {
+            const loggedInUsername = localStorage.getItem('loggedInUsername');
+            console.log('loggedInUsername:', loggedInUsername);
+            if (!loggedInUsername) {
+                console.warn('No loggedInUsername found in localStorage');
+                return;
             }
-            if (el.textContent.trim() === 'Hi, hey!') {
-                el.textContent = `Hi, ${fullName}!`;
+            const usersStr = localStorage.getItem('registeredUsers');
+            console.log('registeredUsers:', usersStr);
+            if (!usersStr) {
+                console.warn('No registeredUsers found in localStorage');
+                return;
             }
-            if (el.textContent.trim() === 'Welcome, hey!') {
-                el.textContent = `Welcome, ${fullName}!`;
+            let users;
+            try {
+                users = JSON.parse(usersStr);
+            } catch (e) {
+                console.error('Error parsing registeredUsers JSON:', e);
+                return;
             }
-        });
+            // Extract username part before '@' and normalize case for matching
+            const usernamePart = loggedInUsername.split('@')[0].toLowerCase();
+            const currentUser = users.find(u => u.username.toLowerCase() === usernamePart);
+            console.log('currentUser:', currentUser);
+            if (!currentUser) {
+                console.warn(`No user found matching username: ${usernamePart}`);
+                return;
+            }
+            const displayName = currentUser.name || usernamePart;
+
+            // Elements to update - all with class "names" and some specific selectors
+            const nameElements = document.querySelectorAll('.names, h5.mb-0.text-white.h3.font-weight-400, .dropdown-header, .ml-2.d-none.d-lg-block span, h5.mb-0.text-white, span.mb-0.text-sm.font-weight-bold');
+            nameElements.forEach(el => {
+                // Replace any occurrence of 'hey' with displayName, case sensitive
+                if (el.textContent.includes('hey')) {
+                    el.textContent = el.textContent.replace(/hey/g, displayName);
+                }
+                // Also handle 'Hi, hey!' and 'Welcome, hey!' specifically
+                if (el.textContent === 'Hi, hey!') {
+                    el.textContent = `Hi, ${displayName}!`;
+                } else if (el.textContent === 'Welcome, hey!') {
+                    el.textContent = `Welcome, ${displayName}!`;
+                }
+            });
+
+            console.log(`User name updated to: ${displayName}`);
+
+        } catch (error) {
+            console.error('Error updating user name on dashboard:', error);
+        }
     });
 </script>
 </body></html>

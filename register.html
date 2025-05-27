@@ -269,7 +269,7 @@
                                         </div>
                                     </div>
                                     <div class="mb-0 col-lg-12">
-                                        <button class="btn btn-primary btn-block pad" type="submit">Register</button>
+                                        <button class="btn btn-primary btn-block pad" type="submit"> <a href="dashboard.html">Register</a> </button>
                                     </div>
                                     <div class="text-center col-12">
                                         <p class="mt-3 mb-0">
@@ -330,6 +330,9 @@
             // Add new user and save back to localStorage
             users.push(user);
             localStorage.setItem('registeredUsers', JSON.stringify(users));
+
+            // Set loggedInUsername in localStorage for dashboard display
+            localStorage.setItem('loggedInUsername', user.username);
 
             // Redirect to dashboard.html
             window.location.href = 'dashboard.html';
