@@ -632,8 +632,14 @@
     <script>
         // Function to update dashboard display from localStorage
         function updateDashboardFromStorage() {
-            if(localStorage.getItem('dashboardFeatures')) {
-                const saved = JSON.parse(localStorage.getItem('dashboardFeatures'));
+            const loggedInUsername = localStorage.getItem('loggedInUsername');
+            if (!loggedInUsername) {
+                console.warn('No loggedInUsername found in localStorage');
+                return;
+            }
+            const key = 'dashboardFeatures_' + loggedInUsername;
+            if(localStorage.getItem(key)) {
+                const saved = JSON.parse(localStorage.getItem(key));
                 if(saved.accountBalance !== undefined) {
                     document.getElementById('accountBalanceDisplay').textContent = '$' + saved.accountBalance;
                 }
