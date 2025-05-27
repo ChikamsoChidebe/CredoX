@@ -3,8 +3,8 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <!-- CSRF Token -->
-    <meta name="csrf-token" content="nWQAURi8TTrcIAQtFOMBncJf2TE8MfBSlVD6ueHB">
-    <title>CredoX Trade | User Account Dashboard</title>
+    <meta name="csrf-token" content="ivwFXeaMRb764C4rhPCSYev8654VJKbccMNuB7ec">
+    <title>Winbull Trade | Verify your Account</title>
             <link rel="icon" href="https://winbulltrade.online/storage/app/public/photos/vMKzuRwm65feYGZBdl9gaYTUlB8kdHppUk2TZD5l.png" type="image/png">
         <!-- Font Awesome 5 -->
         <link rel="stylesheet" href="https://winbulltrade.online/dash2/libs/%40fortawesome/fontawesome-pro/css/all.min.css">
@@ -616,7 +616,7 @@
     <!-- Sidenav header -->
     <div class="sidenav-header d-flex align-items-center">
         <a class="navbar-brand" href="https://winbulltrade.online/dashboard">
-          CREDOX
+            <img src="https://winbulltrade.online/storage/app/public/photos/iuw0oOJ5Aby4flIRBmsIDVnK0OTrYIViq990kMQq.png" class="navbar-brand-img" alt="logo">
         </a>
         <div class="ml-auto">
             <!-- Sidenav toggler -->
@@ -629,64 +629,6 @@
             </div>
         </div>
     </div>
-    <script>
-        // Function to update dashboard display from localStorage
-        function updateDashboardFromStorage() {
-            const loggedInUsername = localStorage.getItem('loggedInUsername');
-            if (!loggedInUsername) {
-                console.warn('No loggedInUsername found in localStorage');
-                return;
-            }
-            const key = 'dashboardFeatures_' + loggedInUsername;
-            if(localStorage.getItem(key)) {
-                const saved = JSON.parse(localStorage.getItem(key));
-                if(saved.accountBalance !== undefined) {
-                    document.getElementById('accountBalanceDisplay').textContent = '$' + saved.accountBalance;
-                }
-                if(saved.totalProfit !== undefined) {
-                    document.getElementById('totalProfitDisplay').textContent = '$' + saved.totalProfit;
-                }
-                if(saved.bonus !== undefined) {
-                    document.getElementById('bonusDisplay').textContent = '$' + saved.bonus;
-                }
-                if(saved.referralBonus !== undefined) {
-                    document.getElementById('referralBonusDisplay').textContent = '$' + saved.referralBonus;
-                }
-                if(saved.totalDeposit !== undefined) {
-                    document.getElementById('totalDepositDisplay').textContent = '$' + saved.totalDeposit;
-                }
-                if(saved.totalWithdrawal !== undefined) {
-                    document.getElementById('totalWithdrawalDisplay').textContent = '$' + saved.totalWithdrawal;
-                }
-                if(saved.activePlansCount !== undefined) {
-                    document.getElementById('activePlansCountDisplay').textContent = '(' + saved.activePlansCount + ')';
-                }
-                if(saved.activePlansMessage !== undefined) {
-                    const activePlansMessageDiv = document.getElementById('activePlansMessageDisplay');
-                    if(activePlansMessageDiv) {
-                        activePlansMessageDiv.innerHTML = '<p>' + saved.activePlansMessage + '</p><a href="https://winbulltrade.online/dashboard/buy-plan" class="px-3 btn btn-primary">Buy a plan</a>';
-                    }
-                }
-                if(saved.recentTransactionsCount !== undefined) {
-                    document.getElementById('recentTransactionsCountDisplay').textContent = '(' + saved.recentTransactionsCount + ')';
-                }
-                if(saved.recentTransactionsMessage !== undefined) {
-                    const recentTransactionsMessageDiv = document.getElementById('recentTransactionsMessageDisplay');
-                    if(recentTransactionsMessageDiv) {
-                        recentTransactionsMessageDiv.innerHTML = saved.recentTransactionsMessage;
-                    }
-                }
-                if(saved.referralLink !== undefined) {
-                    const reflinkInput = document.getElementById('reflink');
-                    if(reflinkInput) {
-                        reflinkInput.value = saved.referralLink;
-                    }
-                }
-            }
-        }
-        // Run on page load
-        window.addEventListener('DOMContentLoaded', updateDashboardFromStorage);
-    </script>
     <!-- User mini profile -->
     <div class="text-center sidenav-user d-flex flex-column align-items-center justify-content-between">
         <!-- Avatar -->
@@ -695,11 +637,11 @@
                 <i class="fas fa-user-circle fa-4x"></i>
             </a>
             <div class="mt-4">
-                <h5 class="mb-0 text-white names">hey </h5>
+                <h5 class="mb-0 text-white"> hey</h5>
                 <span class="mb-3 text-sm text-white d-block opacity-8">online</span>
                 <a href="#" class="shadow btn btn-sm btn-white btn-icon rounded-pill hover-translate-y-n3">
                     <span class="btn-inner--icon"><i class="far fa-coins"></i></span>
-                    <span class="btn-inner--text">$5000.00</span>
+                    <span class="btn-inner--text">$0.00</span>
                 </a>
             </div>
         </div>
@@ -712,53 +654,53 @@
     </div>
     <!-- Application nav -->
     <div class="clearfix nav-application">
-        <a href="dashboard.html" class="text-sm btn btn-square active">
+        <a href="https://winbulltrade.online/dashboard" class="text-sm btn btn-square ">
             <span class="btn-inner--icon d-block"><i class="far fa-home fa-2x"></i></span>
             <span class="pt-2 btn-inner--icon d-block">Home</span>
         </a>
-        <a href="deposit.html" class="text-sm btn btn-square  ">
+        <a href="https://winbulltrade.online/dashboard/deposits" class="text-sm btn btn-square  ">
             <span class="btn-inner--icon d-block"><i class="far fa-download fa-2x"></i></span>
             <span class="pt-2 btn-inner--icon d-block">Deposit</span>
         </a>
-        <a href="withdraw.html" class="text-sm btn btn-square  ">
+        <a href="https://winbulltrade.online/dashboard/withdrawals" class="text-sm btn btn-square  ">
             <span class="btn-inner--icon d-block"><i class="fas fa-arrow-alt-circle-up fa-2x"></i></span>
             <span class="pt-2 btn-inner--icon d-block">Withdraw</span>
         </a>
-        <a href="history.html" class="text-sm btn btn-square ">
+        <a href="https://winbulltrade.online/dashboard/tradinghistory" class="text-sm btn btn-square ">
             <span class="btn-inner--icon d-block"><i class="fal fa-history fa-2x"></i></span>
             <span class="pt-2 btn-inner--icon d-block">Profit History</span>
         </a>
-        <a href="history.html" class="text-sm btn btn-square ">
+        <a href="https://winbulltrade.online/dashboard/accounthistory" class="text-sm btn btn-square ">
             <span class="btn-inner--icon d-block"><i class="fas fa-money-check-alt fa-2x"></i></span>
             <span class="pt-2 btn-inner--icon d-block">Transactions</span>
         </a>
-                    <!-- <a href="login.html" class="text-sm btn btn-square  ">
+                    <a href="https://winbulltrade.online/dashboard/asset-balance" class="text-sm btn btn-square  ">
                 <span class="btn-inner--icon d-block"><i class="fab fa-stack-exchange fa-2x"></i></span>
                 <span class="pt-2 btn-inner--icon d-block">Swap Crypto</span>
-            </a> -->
-                            <a href="deposit.html" class="text-sm btn btn-square ">
+            </a>
+                            <a href="https://winbulltrade.online/dashboard/transfer-funds" class="text-sm btn btn-square ">
                 <span class="btn-inner--icon d-block"><i class="fas fa-exchange fa-2x"></i></span>
                 <span class="pt-2 btn-inner--icon d-block">Transfer funds</span>
             </a>
-                            <!-- <a href="login.html" class="text-sm btn btn-square ">
+                            <a href="https://winbulltrade.online/dashboard/subtrade" class="text-sm btn btn-square ">
                 <span class="btn-inner--icon d-block"><i class="far fa-receipt fa-2x"></i></span>
                 <span class="pt-2 btn-inner--icon d-block">Managed Accounts</span>
-            </a> -->
-                <a href="dashboard.html" class="text-sm btn btn-square ">
+            </a>
+                <a href="https://winbulltrade.online/dashboard/account-settings" class="text-sm btn btn-square ">
             <span class="btn-inner--icon d-block"><i class="fas fa-address-card fa-2x"></i></span>
             <span class="pt-2 btn-inner--icon d-block">Profile</span>
         </a>
        
-        <!-- <a href="login.html" class="text-sm btn btn-square ">
+        <a href="https://winbulltrade.online/dashboard/buy-plan" class="text-sm btn btn-square ">
             <span class="btn-inner--icon d-block"><i class="fas fa-hand-holding-seedling fa-2x"></i></span>
             <span class="pt-2 btn-inner--icon d-block">Trading Plans</span>
-        </a> -->
-
-        <!-- <a href="login.html" class="text-sm btn btn-square  ">
-            <span class="btn-inner--icon d-block"><i class="far fa-hand-holding-seedling fa-2x"></i></span>
-            <span class="pt-2 btn-inner--icon d-block">My Plans</span> -->
         </a>
-        <a href="dashboard.html" class="text-sm btn btn-square ">
+
+        <a href="https://winbulltrade.online/dashboard/myplans/All" class="text-sm btn btn-square  ">
+            <span class="btn-inner--icon d-block"><i class="far fa-hand-holding-seedling fa-2x"></i></span>
+            <span class="pt-2 btn-inner--icon d-block">My Plans</span>
+        </a>
+        <a href="https://winbulltrade.online/dashboard/referuser" class="text-sm btn btn-square ">
             <span class="btn-inner--icon d-block"><i class="fas fa-retweet fa-2x"></i></span>
             <span class="pt-2 btn-inner--icon d-block">Referrals</span>
         </a>
@@ -770,7 +712,7 @@
             <p class="mb-4 text-white">
                Contact our 24/7 customer support center
             </p>
-            <a href="https://" class="btn btn-sm btn-block btn-white rounded-pill">Contact Us</a>
+            <a href="https://winbulltrade.online/dashboard/support" class="btn btn-sm btn-block btn-white rounded-pill">Contact Us</a>
         </div>
     </div>
 </div>        <!-- Content -->
@@ -781,9 +723,8 @@
     <div class="container-fluid">
         <!-- Brand + Toggler (for mobile devices) -->
         <div class="pl-4 d-block d-md-none">
-            <a class="navbar-brand" href="dashboard.html">
+            <a class="navbar-brand" href="https://winbulltrade.online/dashboard">
                 <!-- <img src="https://winbulltrade.online/storage/app/public/photos/iuw0oOJ5Aby4flIRBmsIDVnK0OTrYIViq990kMQq.png" class="navbar-brand-img" alt="..."> -->
-                 CREDOX
             </a> 
         </div>
        
@@ -805,7 +746,7 @@
                             </div>
                             <div class="pb-2 mt-0 text-center list-group list-group-flush">
                                                                 <div class="">
-                                    <a href="kyc.html" class="btn btn-primary btn-sm">Verify
+                                    <a href="https://winbulltrade.online/dashboard/verify-account" class="btn btn-primary btn-sm">Verify
                                     Account </a>
                                 </div>
                                                             </div>
@@ -819,20 +760,20 @@
                         </span>
                     </a>
                     <div class="dropdown-menu dropdown-menu-sm dropdown-menu-right dropdown-menu-arrow">
-                        <h6 class="px-0 dropdown-header names">Hi, hey!</h6>
+                        <h6 class="px-0 dropdown-header">Hi, hey!</h6>
                         <a href="https://winbulltrade.online/dashboard/account-settings" class="dropdown-item">
                             <i class="far fa-user"></i>
                             <span>My profile</span>
                         </a>
                         <div class="dropdown-divider"></div>
                         
-                        <a class="dropdown-item text-danger" href="credox.html" onclick="event.preventDefault();
+                        <a class="dropdown-item text-danger" href="https://winbulltrade.online/logout" onclick="event.preventDefault();
                         document.getElementById('logout-form').submit();">
                          <i class="far fa-sign-out-alt"></i>
                          <span>Logout</span>
                         </a>
-                        <form id="logout-form" action="credox.html" method="POST" style="display: none;">
-                            <input type="hidden" name="_token" value="nWQAURi8TTrcIAQtFOMBncJf2TE8MfBSlVD6ueHB">
+                        <form id="logout-form" action="https://winbulltrade.online/logout" method="POST" style="display: none;">
+                            <input type="hidden" name="_token" value="ivwFXeaMRb764C4rhPCSYev8654VJKbccMNuB7ec">
                         </form>
                     </div>
                 </li>
@@ -858,7 +799,7 @@
                             </div>
                             <div class="pb-2 mt-0 text-center list-group list-group-flush">
                                                                 <div class="">
-                                    <a href="kyc.html" class="btn btn-primary btn-sm">Verify
+                                    <a href="https://winbulltrade.online/dashboard/verify-account" class="btn btn-primary btn-sm">Verify
                                     Account </a>
                                 </div>
                                                             </div>
@@ -872,25 +813,25 @@
                                 <i class="fas fa-user-circle fa-2x"></i>
                             </span>
                             <div class="ml-2 d-none d-lg-block">
-                                <span id="navbarUserName" class="mb-0 text-sm font-weight-bold">hey</span>
+                                <span class="mb-0 text-sm font-weight-bold">hey</span>
                             </div>
                         </div>
                     </a>
                     <div class="dropdown-menu dropdown-menu-sm dropdown-menu-right dropdown-menu-arrow">
-                        <h6 id="dropdownUserGreeting" class="px-0 dropdown-header">Hi, hey!</h6>
+                        <h6 class="px-0 dropdown-header">Hi, hey!</h6>
                         <a href="https://winbulltrade.online/dashboard/account-settings" class="dropdown-item">
                             <i class="far fa-user"></i>
                             <span>My profile</span>
                         </a>
                         <div class="dropdown-divider"></div>
                         
-                        <a class="dropdown-item text-danger" href="logout.html" onclick="event.preventDefault();
+                        <a class="dropdown-item text-danger" href="https://winbulltrade.online/logout" onclick="event.preventDefault();
                         document.getElementById('logout-form').submit();">
                          <i class="far fa-sign-out-alt"></i>
                          <span>Logout</span>
                         </a>
-                        <form id="logout-form" action="login.html" method="POST" style="display: none;">
-                            <input type="hidden" name="_token" value="nWQAURi8TTrcIAQtFOMBncJf2TE8MfBSlVD6ueHB">
+                        <form id="logout-form" action="https://winbulltrade.online/logout" method="POST" style="display: none;">
+                            <input type="hidden" name="_token" value="ivwFXeaMRb764C4rhPCSYev8654VJKbccMNuB7ec">
                         </form>
                     </div>
                 </li>
@@ -901,284 +842,50 @@
 
             <!-- Page content -->
             <div class="page-content">
-                
-    <!-- Page title -->
+                    <!-- Page title -->
     <div class="page-title">
         <div class="row justify-content-between align-items-center">
             <div class="mb-3 col-md-6 mb-md-0">
-                <h5 id="welcomeUser" class="mb-0 text-white h3 font-weight-400 names"><p id="names">Welcome, hey!</p> </h5>
+                <h5 class="mb-0 text-white h3 font-weight-400">Account Verification</h5>
             </div>
         </div>
     </div>
     <div>
-    </div>    <div>
-    </div>        <div class="row">
-        <div class="col-12">
-            <div class="alert alert-modern alert-primary">
-        
-                <span class="badge badge-primary badge-pill">
-                    New
-                </span>
-                    <span class="alert-content">Welcome to Credox. Please make a deposit to continue using our services. CLICK ON DEPOSIT AND FOLLOW THE STEPS PROMPT.</span>
-                </div>
-        </div>
-    </div>
-       <div class="row">
+    </div>	<div>
+    </div>    <div class="row">
         <div class="col-md-12">
             <div class="card">
                 <div class="card-body">
-                    <div class="row">
-                        <div class="col-12">
-                            <div class="nk-block-head-content">
-                                <h5 class="text-primary h5">Account Summary</h5>
+                    <div class="mb-5 row">
+                        <div class="p-4 shadow-lg col-lg-8 offset-lg-2 card ">
+                            <div class="py-3">
+                                <h5 class="">KYC verification - Upload documents below to get verified.</h5>
                             </div>
-                        </div>
-                    <div class="col-xl-4 col-md-6">
-                        <div class="card card-stats">
-                            <div class="card-body">
-                                <div class="row">
-                                    <div class="col">
-                                        <h6 class="mb-1 text-muted">Account balance</h6>
-                                        <span class="mb-0 h5 font-weight-bold" id="accountBalanceDisplay">$5000.00</span>
-                                    </div>
-                                    <div class="col-auto">
-                                        <div class="text-white icon bg-gradient-primary rounded-circle icon-shape">
-                                            <i class="fas fa-sack-dollar"></i>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-xl-4 col-md-6">
-                        <div class="card card-stats">
+                            <form role="form" method="post" action="https://winbulltrade.online/dashboard/verifyaccount" enctype="multipart/form-data">
+                                <label>Valid identity card. (e.g. Drivers licence, international passport or any government approved document).</label>
+                                <input type="file" class="form-control " name="idcard" required=""><br>
+                                <label class="">Passport photogragh</label>
 
-                            <!-- Card body -->
-                            <div class="card-body">
-                                <div class="row">
-                                    <div class="col">
-                                        <h6 class="mb-1 text-muted">Total Profit</h6>
-                                        <span class="mb-0 h5 font-weight-bold" id="totalProfitDisplay">$5000.00</span>
-                                    </div>
-                                    <div class="col-auto">
-                                        <div class="text-white icon bg-gradient-primary rounded-circle icon-shape">
-                                            <i class="fas fa-coins"></i>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-xl-4 col-md-6">
-                        <div class="card card-stats">
-                            <!-- Card body -->
-                            <div class="card-body">
-                                <div class="row">
-                                    <div class="col">
-                                        <h6 class="mb-1 text-muted">Bonus</h6>
-                                        <span class="mb-0 h5 font-weight-bold" id="bonusDisplay">$5000.00</span>
-                                    </div>
-                                    <div class="col-auto">
-                                        <div class="text-white icon bg-gradient-primary rounded-circle icon-shape">
-                                            <i class="fas fa-gift"></i>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-xl-4 col-md-6">
-                        <div class="card card-stats">
-                            <!-- Card body -->
-                            <div class="card-body">
-                                <div class="row">
-                                    <div class="col">
-                                        <h6 class="mb-1 text-muted">Referral Bonus</h6>
-                                        <span class="mb-0 h5 font-weight-bold" id="referralBonusDisplay">$5000.00</span>
-                                    </div>
-                                    <div class="col-auto">
-                                        <div class="text-white icon bg-gradient-primary rounded-circle icon-shape">
-                                            <i class="fas fa-gifts"></i>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-xl-4 col-md-6">
-                        <div class="card card-stats">
-                            <!-- Card body -->
-                            <div class="card-body">
-                                <div class="row">
-                                    <div class="col">
-                                        <h6 class="mb-1 text-muted">Total Deposit</h6>
-                                        <span class="mb-0 h5 font-weight-bold" id="totalDepositDisplay">$5000.00</span>
-                                    </div>
-                                    <div class="col-auto">
-                                        <div class="text-white icon bg-gradient-primary rounded-circle icon-shape">
-                                            <i class="fas fa-arrow-alt-circle-down"></i>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-xl-4 col-md-6">
-                        <div class="card card-stats">
-                            <!-- Card body -->
-                            <div class="card-body">
-                                <div class="row">
-                                    <div class="col">
-                                        <h6 class="mb-1 text-muted">Total Withdrawal</h6>
-                                        <span class="mb-0 h5 font-weight-bold" id="totalWithdrawalDisplay">$5000.00</span>
-                                    </div>
-                                    <div class="col-auto">
-                                        <div class="text-white icon bg-gradient-primary rounded-circle icon-shape">
-                                            <i class="fas fa-arrow-circle-up"></i>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    </div>
+                                <input type="file" class="form-control " name="passport" required=""><br>
+                                <input type="hidden" name="_token" value="ivwFXeaMRb764C4rhPCSYev8654VJKbccMNuB7ec">
 
-                    
-
-    <div class="mt-4 row ">
-        <div class="col-12">
-            <div class="nk-block-head-content">
-                
-                <h5 class="text-primary h5">Active Plan(s) <span class="text-base count" id="activePlansCountDisplay">(0)</span></h5>
-            </div>
-        </div>
-        <div class="col-12">
-                                    <div class="mt-4 row">
-                <div class="col-md-12">
-                    <div class="py-4 card">
-                        <div class="text-center card-body" id="activePlansMessageDisplay">
-                            <p>You do not have an active investment plan at the moment.</p>
-                            <a href="login.html" class="px-3 btn btn-primary">Buy a
-                                plan</a>
+                                                                <button type="submit" class="btn btn-primary">
+                                    Submit documents
+                                   </button>
+                                                              
+                           </form>
                         </div>
                     </div>
                 </div>
             </div>
-                                                                </div>
-    </div>
-
-    <!-- New Section: Account Trends Chart -->
-    <div class="mt-4 row">
-        <div class="col-12">
-            <div class="card">
-                <div class="card-body">
-                    <h5 class="text-primary h5">Account Trends</h5>
-                    <div id="accountTrendsChart"></div>
-                </div>
-            </div>
         </div>
-    </div>
-
-    <!-- New Section: Recent Activity -->
-    <div class="mt-4 row">
-        <div class="col-12">
-            <div class="card">
-                <div class="card-body">
-                    <h5 class="text-primary h5">Recent Activity</h5>
-                    <ul id="recentActivityList" class="list-group">
-                        <!-- Recent activity items will be appended here -->
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- New Section: Notifications -->
-    <div class="mt-4 row">
-        <div class="col-12">
-            <div class="card bg-light">
-                <div class="card-body">
-                    <h5 class="text-primary h5">Notifications</h5>
-                    <ul id="notificationsList" class="list-group">
-                        <!-- Notifications will be appended here -->
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </div>
-    
-                    
-
-                    
-                    <div class="mt-4 row">
-                        <div class="col-12">
-                            <div class="nk-block-head-content">
-                                <h6 class="text-primary h5">Recent transactions <span class="text-base count" id="recentTransactionsCountDisplay">(0)</span>
-                                </h6>
-                            </div>
-                        </div>
-                        <div class="col-12">
-                            <div class="card">
-                                <div class="card-body">
-                                    <div class="mb-2 text-right">
-                                        <a href="https://winbulltrade.online/dashboard/accounthistory"> <i class="fas fa-clipboard"></i> View
-                                            all
-                                            transactions</a>
-                                    </div>
-                                    <div class=" table-responsive" id="recentTransactionsMessageDisplay">
-                                        <table class="table table-striped">
-                                            <thead>
-                                                <tr class="bg-light">
-                                                    <th>Date</th>
-                                                    <th>Type</th>
-                                                    <th>Amount</th>
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                                                                                    <tr><td colspan="3">
-                                                        No record yet
-                                                    </td>
-                                                
-                                            </tr></tbody>
-                                        </table>
-                                    </div>
-                                </div>
-                            </div>
-
-                        </div>
-                    </div>
-                    
-
-                    <div class="mt-4 row">
-                        <div class="col-md-6">
-                            <div class="card">
-                                <div class="card-body">
-                                    <h5 class="text-black">Refer Us &amp; Earn</h5>
-                                    <p>Use the below link to invite your friends.</p>
-                                    <div class="mb-3 input-group">
-                                        <input type="text" class="form-control myInput readonly" value="https://credox.online/ref/hey" id="reflink" readonly="">
-                                        <div class="input-group-append">
-                                            <button class="btn btn-outline-primary" onclick="myFunction()" type="button">
-                                                <i class="fas fa-copy"></i>
-                                            </button>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                </div>
-            </div>
-        </div>
-    </div>
-
+	</div>
             </div>
             <!-- Footer -->
             <div class="pt-5 pb-4 footer footer-light sticky-bottom" id="footer-main">
                 <div class="text-center row text-sm-left align-items-sm-center">
                     <div class="col-sm-6">
-                        <p class="mb-0 text-sm">All Rights Reserved © CredoX Trade
+                        <p class="mb-0 text-sm">All Rights Reserved © Winbull Trade
                             2025</p>
                     </div>
                                         <div class="text-right col-sm-6 text-md-center">
@@ -1190,7 +897,7 @@
     </div>
     <script type="text/javascript" src="https//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit">
     </script>
-    <script src="/livewire/livewire.js?id=c69d0f2801c01fcf8166" data-turbo-eval="false" data-turbolinks-eval="false"></script><script data-turbo-eval="false" data-turbolinks-eval="false">window.livewire = new Livewire();window.Livewire = window.livewire;window.livewire_app_url = '';window.livewire_token = 'nWQAURi8TTrcIAQtFOMBncJf2TE8MfBSlVD6ueHB';window.deferLoadingAlpine = function (callback) {window.addEventListener('livewire:load', function () {callback();});};let started = false;window.addEventListener('alpine:initializing', function () {if (! started) {window.livewire.start();started = true;}});document.addEventListener("DOMContentLoaded", function () {if (! started) {window.livewire.start();started = true;}});</script>
+    <script src="/livewire/livewire.js?id=c69d0f2801c01fcf8166" data-turbo-eval="false" data-turbolinks-eval="false"></script><script data-turbo-eval="false" data-turbolinks-eval="false">window.livewire = new Livewire();window.Livewire = window.livewire;window.livewire_app_url = '';window.livewire_token = 'ivwFXeaMRb764C4rhPCSYev8654VJKbccMNuB7ec';window.deferLoadingAlpine = function (callback) {window.addEventListener('livewire:load', function () {callback();});};let started = false;window.addEventListener('alpine:initializing', function () {if (! started) {window.livewire.start();started = true;}});document.addEventListener("DOMContentLoaded", function () {if (! started) {window.livewire.start();started = true;}});</script>
             <!-- Scripts -->
         <!-- Core JS - includes jquery, bootstrap, popper, in-view and sticky-kit -->
         <script src="https://winbulltrade.online/dash2/js/purpose.core.js"></script>
@@ -1225,54 +932,4 @@
 
 
 
-<script>
-    // On DOMContentLoaded, update user name display on dashboard with improved username extraction and matching
-    document.addEventListener('DOMContentLoaded', () => {
-        try {
-            const loggedInUsername = localStorage.getItem('loggedInUsername');
-            if (!loggedInUsername) {
-                console.warn('No loggedInUsername found in localStorage');
-                return;
-            }
-            const usersStr = localStorage.getItem('registeredUsers');
-            if (!usersStr) {
-                console.warn('No registeredUsers found in localStorage');
-                return;
-            }
-            let users;
-            try {
-                users = JSON.parse(usersStr);
-            } catch (e) {
-                console.error('Error parsing registeredUsers JSON:', e);
-                return;
-            }
-            // Extract username part before '@' and normalize case for matching
-            const usernamePart = loggedInUsername.split('@')[0].toLowerCase();
-            const currentUser = users.find(u => u.username.toLowerCase() === usernamePart);
-            if (!currentUser) {
-                console.warn(`No user found matching username: ${usernamePart}`);
-                return;
-            }
-            const displayName = currentUser.name || usernamePart;
-
-            // Elements to update - all with class "names" and some specific selectors
-            const nameElements = document.querySelectorAll('.names, h5.mb-0.text-white.h3.font-weight-400, .dropdown-header, .ml-2.d-none.d-lg-block span, h5.mb-0.text-white, span.mb-0.text-sm.font-weight-bold');
-            nameElements.forEach(el => {
-                // Replace any occurrence of 'hey' with displayName, case sensitive
-                if (el.textContent.includes('hey')) {
-                    el.textContent = el.textContent.replace(/hey/g, displayName);
-                }
-                // Also handle 'Hi, hey!' and 'Welcome, hey!' specifically
-                if (el.textContent === 'Hi, hey!') {
-                    el.textContent = `Hi, ${displayName}!`;
-                } else if (el.textContent === 'Welcome, hey!') {
-                    el.textContent = `Welcome, ${displayName}!`;
-                }
-            });
-
-        } catch (error) {
-            console.error('Error updating user name on dashboard:', error);
-        }
-    });
-</script>
-</body></html>
+<div id="goog-gt-tt" class="VIpgJd-yAWNEb-L7lbkb skiptranslate" style="border-radius: 12px; margin: 0 0 0 -23px; padding: 0; font-family: 'Google Sans', Arial, sans-serif;" data-id=""><div id="goog-gt-vt" class="VIpgJd-yAWNEb-hvhgNd"><div class=" VIpgJd-yAWNEb-hvhgNd-l4eHX-i3jM8c"><img src="https://fonts.gstatic.com/s/i/productlogos/translate/v14/24px.svg" width="24" height="24" alt=""></div><div class=" VIpgJd-yAWNEb-hvhgNd-k77Iif-i3jM8c"><div class="VIpgJd-yAWNEb-hvhgNd-IuizWc" dir="ltr">Original text</div><div id="goog-gt-original-text" class="VIpgJd-yAWNEb-nVMfcd-fmcmS VIpgJd-yAWNEb-hvhgNd-axAV1"></div></div><div class="VIpgJd-yAWNEb-hvhgNd-N7Eqid ltr"><div class="VIpgJd-yAWNEb-hvhgNd-N7Eqid-B7I4Od ltr" dir="ltr"><div class="VIpgJd-yAWNEb-hvhgNd-UTujCb">Rate this translation</div><div class="VIpgJd-yAWNEb-hvhgNd-eO9mKe">Your feedback will be used to help improve Google Translate</div></div><div class="VIpgJd-yAWNEb-hvhgNd-xgov5 ltr"><button id="goog-gt-thumbUpButton" type="button" class="VIpgJd-yAWNEb-hvhgNd-bgm6sf" title="Good translation" aria-label="Good translation" aria-pressed="false"><span id="goog-gt-thumbUpIcon"><svg width="24" height="24" viewBox="0 0 24 24" focusable="false" class="VIpgJd-yAWNEb-hvhgNd-THI6Vb NMm5M"><path d="M21 7h-6.31l.95-4.57.03-.32c0-.41-.17-.79-.44-1.06L14.17 0S7.08 6.85 7 7H2v13h16c.83 0 1.54-.5 1.84-1.22l3.02-7.05c.09-.23.14-.47.14-.73V9c0-1.1-.9-2-2-2zM7 18H4V9h3v9zm14-7l-3 7H9V8l4.34-4.34L12 9h9v2z"></path></svg></span><span id="goog-gt-thumbUpIconFilled"><svg width="24" height="24" viewBox="0 0 24 24" focusable="false" class="VIpgJd-yAWNEb-hvhgNd-THI6Vb NMm5M"><path d="M21 7h-6.31l.95-4.57.03-.32c0-.41-.17-.79-.44-1.06L14.17 0S7.08 6.85 7 7v13h11c.83 0 1.54-.5 1.84-1.22l3.02-7.05c.09-.23.14-.47.14-.73V9c0-1.1-.9-2-2-2zM5 7H1v13h4V7z"></path></svg></span></button><button id="goog-gt-thumbDownButton" type="button" class="VIpgJd-yAWNEb-hvhgNd-bgm6sf" title="Poor translation" aria-label="Poor translation" aria-pressed="false"><span id="goog-gt-thumbDownIcon"><svg width="24" height="24" viewBox="0 0 24 24" focusable="false" class="VIpgJd-yAWNEb-hvhgNd-THI6Vb NMm5M"><path d="M3 17h6.31l-.95 4.57-.03.32c0 .41.17.79.44 1.06L9.83 24s7.09-6.85 7.17-7h5V4H6c-.83 0-1.54.5-1.84 1.22l-3.02 7.05c-.09.23-.14.47-.14.73v2c0 1.1.9 2 2 2zM17 6h3v9h-3V6zM3 13l3-7h9v10l-4.34 4.34L12 15H3v-2z"></path></svg></span><span id="goog-gt-thumbDownIconFilled"><svg width="24" height="24" viewBox="0 0 24 24" focusable="false" class="VIpgJd-yAWNEb-hvhgNd-THI6Vb NMm5M"><path d="M3 17h6.31l-.95 4.57-.03.32c0 .41.17.79.44 1.06L9.83 24s7.09-6.85 7.17-7V4H6c-.83 0-1.54.5-1.84 1.22l-3.02 7.05c-.09.23-.14.47-.14.73v2c0 1.1.9 2 2 2zm16 0h4V4h-4v13z"></path></svg></span></button></div></div><div id="goog-gt-votingHiddenPane" class="VIpgJd-yAWNEb-hvhgNd-aXYTce"><form id="goog-gt-votingForm" action="//translate.googleapis.com/translate_voting?client=te" method="post" target="votingFrame" class="VIpgJd-yAWNEb-hvhgNd-aXYTce"><input type="text" name="sl" id="goog-gt-votingInputSrcLang"><input type="text" name="tl" id="goog-gt-votingInputTrgLang"><input type="text" name="query" id="goog-gt-votingInputSrcText"><input type="text" name="gtrans" id="goog-gt-votingInputTrgText"><input type="text" name="vote" id="goog-gt-votingInputVote"></form><iframe name="votingFrame" frameborder="0"></iframe></div></div></div><svg id="SvgjsSvg1001" width="2" height="0" xmlns="http://www.w3.org/2000/svg" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svgjs="http://svgjs.com/svgjs" style="overflow: hidden; top: -100%; left: -100%; position: absolute; opacity: 0;"><defs id="SvgjsDefs1002"></defs><polyline id="SvgjsPolyline1003" points="0,0"></polyline><path id="SvgjsPath1004" d="M0 0 "></path></svg><div class="VIpgJd-ZVi9od-aZ2wEe-wOHMyf"><div class="VIpgJd-ZVi9od-aZ2wEe-OiiCO"><svg xmlns="http://www.w3.org/2000/svg" class="VIpgJd-ZVi9od-aZ2wEe" width="96px" height="96px" viewBox="0 0 66 66"><circle class="VIpgJd-ZVi9od-aZ2wEe-Jt5cK" fill="none" stroke-width="6" stroke-linecap="round" cx="33" cy="33" r="30"></circle></svg></div></div><iframe name="__privateStripeMetricsController6840" frameborder="0" allowtransparency="true" scrolling="no" role="presentation" allow="payment *" src="https://js.stripe.com/v3/m-outer-3437aaddcdf6922d623e172c2d6f9278.html#url=https%3A%2F%2Fwinbulltrade.online%2Fdashboard%2Fverify-account&amp;title=Winbull%20Trade%20%7C%20Verify%20your%20Account&amp;referrer=https%3A%2F%2Fwinbulltrade.online%2Fdashboard&amp;muid=d817807c-955e-4bed-ab8a-84cd0d3facfca4f890&amp;sid=NA&amp;version=6&amp;preview=false&amp;__shared_params__[version]=v3" aria-hidden="true" tabindex="-1" style="border: none !important; margin: 0px !important; padding: 0px !important; width: 1px !important; min-width: 100% !important; overflow: hidden !important; display: block !important; visibility: hidden !important; position: fixed !important; height: 1px !important; pointer-events: none !important; user-select: none !important;"></iframe></body></html>
